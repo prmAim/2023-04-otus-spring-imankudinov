@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- TODO: определите бин класса ru.otus.spring.dao.PersonDaoSimple -->
+    <bean id="personDao" class="ru.otus.spring.dao.PersonDaoSimple"></bean>
 
-    <!-- TODO: определите бин класса ru.otus.spring.PersonServiceImpl -->
+    <bean id="personService" class="ru.otus.spring.service.PersonServiceImpl">
+        <constructor-arg index="0" ref="personDao"/>
+    </bean>
+
+    <bean id="answersDao" class="ru.otus.spring.dao.AnswersDaoImpl"></bean>
+    <bean id="loadResource" class="ru.otus.spring.service.LoadResourceCsv">
+        <constructor-arg name="fileName" value="questions.csv"/>
+    </bean>
+
+    <bean id="parserResouce" class="ru.otus.spring.dao.ParserResouceImpl">
+        <constructor-arg name="loadResource" ref="loadResource"/>
+    </bean>
+    <bean id="questionsDao" class="ru.otus.spring.dao.QuestionsDaoImpl" init-method="loadQuestions">
+        <constructor-arg name="parserResouce" ref="parserResouce"/>
+    </bean>
+    <bean id="questionsService" class="ru.otus.spring.service.QuestionsServiceImpl">
+        <constructor-arg name="questions" ref="questionsDao"/>
+    </bean>
 
 </beans>
