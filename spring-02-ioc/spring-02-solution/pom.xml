@@ -6,19 +6,15 @@
 
     <parent>
         <groupId>ru.otus</groupId>
-        <artifactId>spring-01-ioc</artifactId>
+        <artifactId>spring-02-ioc</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
     <groupId>ru.otus</groupId>
-    <artifactId>spring-01-solution</artifactId>
+    <artifactId>spring-02-solution</artifactId>
     <version>1.0</version>
 
     <packaging>jar</packaging>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <dependency>
