@@ -9,7 +9,7 @@ public interface AnswersDao {
   /**
    * Проверка указан ли правильно ответ на вопрос
    */
-  boolean checkCorrectAnswer(Answer answer);
+  boolean checkCorrectAnswerByID(int answerId);
 
   /**
    * Добавление ответов
@@ -21,5 +21,4 @@ public interface AnswersDao {
    * @return
    */
   List<Answer> findByAll();
-
 }

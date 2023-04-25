@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ParserResouce {
   /**
-   * список вопросов
+   * разложить данные по вопросам
    */
-  public List<Question> parserResourceToQuestion();
+  List<Question> parserResourceToQuestion();
 }

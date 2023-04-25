@@ -1,17 +1,21 @@
 package ru.otus.spring.dao;
 
 
-import ru.otus.spring.domain.Answer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import ru.otus.spring.domain.Question;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository("questionsDao")
 public class QuestionsDaoImpl implements QuestionsDao {
   private List<Question> questions;
-  private ParserResouce parserResouce;
+  private final ParserResouce parserResouce;
 
+  @Autowired
   public QuestionsDaoImpl(ParserResouce parserResouce) {
     questions = new ArrayList<>();
     this.parserResouce = parserResouce;
@@ -27,12 +31,7 @@ public class QuestionsDaoImpl implements QuestionsDao {
     return questions;
   }
 
-  @Override
-  public boolean checkAnswer(Integer index, Answer answer) {
-    this.findById(index).get().getAnswers().checkCorrectAnswer(answer);
-    return false;
-  }
-
+  @PostConstruct
   @Override
   public void loadQuestions() {
     questions = parserResouce.parserResourceToQuestion();
@@ -40,20 +39,12 @@ public class QuestionsDaoImpl implements QuestionsDao {
 
   @Override
   public String printByAll() {
-    StringBuilder strBuilder = new StringBuilder("Список вопросов:\n");
+    StringBuilder strBuilder = new StringBuilder("The questions:\n");
     for (int i = 0; i < questions.size(); i++) {
-      strBuilder.append("Вопрос " + (i + 1) + ") ");
+      strBuilder.append("The question " + (i + 1) + ") ");
       strBuilder.append(questions.get(i).toString());
       strBuilder.append("\n");
     }
     return strBuilder.toString();
-  }
-
-  public ParserResouce getParserResouce() {
-    return parserResouce;
-  }
-
-  public void setParserResouce(ParserResouce parserResouce) {
-    this.parserResouce = parserResouce;
   }
 }
