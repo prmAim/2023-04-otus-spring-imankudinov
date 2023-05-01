@@ -1,10 +1,12 @@
 package ru.otus.spring.dao;
 
+import org.springframework.stereotype.Repository;
 import ru.otus.spring.domain.Answer;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository("answersDao")
 public class AnswersDaoImpl implements AnswersDao {
   private List<Answer> answers;
 
@@ -13,8 +15,8 @@ public class AnswersDaoImpl implements AnswersDao {
   }
 
   @Override
-  public boolean checkCorrectAnswer(Answer answer) {
-    return answer.isCorrectAnswer();
+  public boolean checkCorrectAnswerByID(int answerId) {
+    return answers.get(answerId).isCorrectAnswer();
   }
 
   @Override
@@ -29,7 +31,7 @@ public class AnswersDaoImpl implements AnswersDao {
 
   @Override
   public String toString() {
-    StringBuilder str = new StringBuilder("Варианты ответов: \n");
+    StringBuilder str = new StringBuilder("The option answers: \n");
     for (int i = 0; i < answers.size(); i++) {
       str.append((i + 1) + " " + answers.get(i).toString());
       str.append("\n");

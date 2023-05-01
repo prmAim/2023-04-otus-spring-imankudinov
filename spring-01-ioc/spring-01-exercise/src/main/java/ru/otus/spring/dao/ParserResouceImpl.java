@@ -1,15 +1,19 @@
 package ru.otus.spring.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import ru.otus.spring.domain.Question;
 import ru.otus.spring.service.LoadResource;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository("parserResouce")
 public class ParserResouceImpl implements ParserResouce {
     private final String _TRUE_ = "true";
     private final LoadResource loadResource;
 
+    @Autowired
     public ParserResouceImpl(LoadResource loadResource) {
         this.loadResource = loadResource;
     }
@@ -37,7 +41,7 @@ public class ParserResouceImpl implements ParserResouce {
             question.setQuestionText(splitLev1[0]);
             question.setAnswers(answersDao);
         } catch (ArrayIndexOutOfBoundsException ex) {
-            System.out.println(ex.getMessage() + " Такого индекса нет!");
+            System.out.println(ex.getMessage() + " There is no such index!");
         }
         return question;
     }

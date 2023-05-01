@@ -5,8 +5,6 @@ public class Answer {
   private String answer;
   private boolean correctAnswer;
 
-  public Answer() {}
-
   public Answer(String answer, boolean correctAnswer) {
     this.answer = answer;
     this.correctAnswer = correctAnswer;

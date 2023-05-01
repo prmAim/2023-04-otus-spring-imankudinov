@@ -33,9 +33,9 @@ public class Question {
 
   @Override
   public String toString() {
-    StringBuilder str = new StringBuilder(questionText + "\n");
+    StringBuilder str = new StringBuilder("The question: " + questionText + "\n");
     for (int i = 0; i < answers.findByAll().size(); i++) {
-      str.append("Вариант ответа " + (i + 1) + ": ");
+      str.append("The Answer option " + (i + 1) + ": ");
       str.append(answers.findByAll().get(i).toString());
       str.append("\n");
     }
